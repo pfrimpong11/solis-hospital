@@ -355,4 +355,13 @@ function VerifyLoginContent() {
       </motion.div>
     </div>
   )
-} 
+}
+
+// Main component with Suspense boundary
+export default function VerifyLoginPage() {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <VerifyLoginContent />
+    </Suspense>
+  )
+}

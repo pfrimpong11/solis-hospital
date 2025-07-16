@@ -1,13 +1,26 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Shield, CheckCircle, ArrowLeft, User, Stethoscope, Clock, UserCog, DollarSign, Pill } from 'lucide-react'
 import { toast } from 'react-hot-toast'
 import Cookies from 'js-cookie'
 
-export default function VerifyOTPPage() {
+// Loading component for Suspense fallback
+function LoadingFallback() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+        <p className="text-gray-600 dark:text-gray-400">Loading...</p>
+      </div>
+    </div>
+  );
+}
+
+// Inner component that uses useSearchParams
+function VerifyOTPContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [verificationStep, setVerificationStep] = useState(1)
@@ -325,4 +338,13 @@ export default function VerifyOTPPage() {
       </motion.div>
     </div>
   )
-} 
+}
+
+// Main component with Suspense boundary
+export default function VerifyOTPPage() {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <VerifyOTPContent />
+    </Suspense>
+  )
+}
