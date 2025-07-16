@@ -35,6 +35,7 @@ import {
   Database,
   UserPlus,
   UserCheck,
+  MessageSquare,
 } from 'lucide-react'
 import { useTheme } from 'next-themes'
 
@@ -55,6 +56,7 @@ const navItems: NavItem[] = [
   { label: 'Inventory', href: '/dashboard/inventory', icon: Package, roles: ['admin', 'pharmacist'] },
   { label: 'Prescriptions', href: '/dashboard/prescriptions', icon: ClipboardList, roles: ['admin', 'doctor', 'pharmacist'] },
   { label: 'Billing', href: '/dashboard/billing', icon: CreditCard, roles: ['admin', 'cashier'] },
+  { label: 'Health Assistant', href: '/dashboard/assistant', icon: MessageSquare, roles: ['admin', 'doctor', 'nurse', 'pharmacist', 'cashier'] },
   { label: 'DB Master', href: '/dashboard/db-master', icon: Database, roles: ['admin'] },
   { label: 'Doctor Registration', href: '/dashboard/registration', icon: UserPlus, roles: ['admin'] },
   { label: 'Staff Registration', href: '/dashboard/registration', icon: UserCheck, roles: ['admin'] },
